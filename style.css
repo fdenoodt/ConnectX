@@ -1,0 +1,28 @@
+body {
+  background-color: rgb(54, 57, 63);
+}
+
+.token {
+  border: solid 2px;
+  width: 40px;
+  height: 40px;
+  border-radius: 100%
+}
+
+.purple {
+  background-color: blueviolet
+}
+
+.white {
+  background-color: white
+}
+
+table, td {
+  border: 1px solid black;
+  background-color: rgb(47, 49, 54)
+}
+
+td {
+  width: 40px;
+  height: 40px;
+}
