@@ -12,17 +12,17 @@ class Token {
   get X() {
     return this._x
   }
-
-  set X() {
-    return this._x
-  }
-
+  
   get Y() {
     return this._y
   }
 
-  set Y() {
-    return this._y
+  set X(value) {
+    this._x = value
+  }
+
+  set Y(value) {
+    this._y = value
   }
 
 }
