@@ -1,28 +1,28 @@
 class Token {
   constructor(owner, row, col) {
-    this._owner = owner
-    this._row = row
-    this._col = col
+    this.owner = owner
+    this.row = row
+    this.col = col
   }
 
   get Owner() {
-    return this._owner
+    return this.owner
   }
 
   get Row() {
-    return this._row
+    return this.row
   }
   
   get Col() {
-    return this._col
+    return this.col
   }
 
   set Row(value) {
-    this._row = value
+    this.row = value
   }
 
   set Col(value) {
-    this._col = value
+    this.col = value
   }
 
 }
