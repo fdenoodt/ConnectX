@@ -7,16 +7,20 @@
   <title>ConnectX</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+  <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
+  <script src="Token.js"></script>
+  <script src="Game.js"></script>
   <script src="script.js"></script>
+
 </head>
 
 <body>
-
+  <button onclick="writeUserData('fabian', 'em', 'img')">save</button>
   <table>
     <tr>
       <td>
         <div class="token white"></div>
-      </td>`
+      </td>
       <td></td>
       <td></td>
     </tr>
@@ -34,19 +38,8 @@
     </tr>
   </table>
 
-
-  <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
   <script>
-    // Initialize Firebase
-    var config = {
-      apiKey: "AIzaSyDdB0qAIxjCAutCYUpxrO6IFgrxIO4d8Is",
-      authDomain: "connectx-ba73a.firebaseapp.com",
-      databaseURL: "https://connectx-ba73a.firebaseio.com",
-      projectId: "connectx-ba73a",
-      storageBucket: "connectx-ba73a.appspot.com",
-      messagingSenderId: "255736146698"
-    };
-    firebase.initializeApp(config);
+
   </script>
 </body>
 
