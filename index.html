@@ -8,39 +8,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
   <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
+  <script src="Display.js"></script>
   <script src="Token.js"></script>
   <script src="Game.js"></script>
   <script src="script.js"></script>
 
 </head>
 
-<body>
-  <button onclick="writeUserData('fabian', 'em', 'img')">save</button>
-  <table>
-    <tr>
-      <td>
-        <div class="token white"></div>
-      </td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>
-        <div class="token purple"></div>
-      </td>
-      <td></td>
-    </tr>
+<body onload="findGame()" >
+  <table class="playField">
   </table>
-
-  <script>
-
-  </script>
 </body>
 
 </html>

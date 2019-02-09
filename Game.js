@@ -15,5 +15,7 @@ class Game {
         tokens: null,
       })
     }
+
+    this.display = new Display()
   }
 }
