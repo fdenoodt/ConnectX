@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>ConnectX</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+  <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
+  <script src="script.js"></script>
+
+</head>
+
+<body>
+  <div class="title">
+    Sign in:
+  </div>
+  <input placeholder="email" type="text" name="login_email" id="inp_login_email"><br>
+  <input placeholder="password" type="password" name="login_password" id="inp_login_password"><br>
+  <button onclick="signIn()">Sign in</button> <br>
+  <div class="title">
+    Register:
+  </div>
+  <input placeholder="email" type="text" name="register_email" id="inp_register_email"><br>
+  <input placeholder="password" type="password" name="register_password" id="inp_register_password"><br>
+  <button onclick="register()">Create account</button> <br>
+  <script>
+    const signIn = () => {
+      location.href = "/"
+    }
+  </script>
+</body>
+
+</html>
