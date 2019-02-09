@@ -8,11 +8,26 @@ const config = {
 };
 firebase.initializeApp(config);
 
+let game;
 const database = firebase.database();
 const ref = firebase.database().ref('games/')
-let game;
+
 const createGame = () => {
   game = new Game()
 }
 
-createGame()
+const findGame = () => {
+  ref.once('value').then(function (snapshot) {
+    for (const key in snapshot.val()) {
+      const foundGame = snapshot.val()[key]
+      if (foundGame.player2 === undefined) {
+        game = new Game(key)
+        break;
+      }
+    }
+    if (game == null)
+      createGame()
+  });
+}
+
+findGame()

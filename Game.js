@@ -1,12 +1,19 @@
 class Game {
-  constructor() {
-    this.ref = ref.push();
-    console.log(this.ref.key);
+  constructor(key) {
+    if (key != null) { //joining game
+      this.ref = firebase.database().ref('games/' + key)
 
-    this.ref.set({
-      player1: "p90",
-      player2: "",
-      tokens: [[0, 0, 0], [0, 0, 0], [0, 0, 0]],
-    })
+      const updates = {};
+      updates['player2'] = 'p2';
+      this.ref.update(updates)
+    }
+    else {
+      this.ref = ref.push();
+      this.ref.set({
+        player1: "p1",
+        player2: null,
+        tokens: null,
+      })
+    }
   }
 }
