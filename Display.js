@@ -8,7 +8,8 @@ class Display {
     for (let i = 0; i < 3; i++) {
       const row = this._table.insertRow(this._table.rows.length)
       for (let j = 0; j < 3; j++) {
-        row.insertCell(j)
+        const col = row.insertCell(j)
+        col.setAttribute('onclick', `game.placeToken(${i}, ${j});`)
       }
     }
   }
