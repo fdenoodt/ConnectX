@@ -28,8 +28,9 @@ class Game {
   }
 
   listenForTurn() {
+    const that = this
     this.ref.child('/turn').on('value', function (data) {
-      this.whosTurn = data.val();
+      that.whosTurn = data.val();
     })
   }
 
@@ -49,15 +50,23 @@ class Game {
   }
 
   placeToken(i, j) {
-    const usedSpots = this.tokens.filter(function (token) { return (token.Row == i && token.Col == j); });
-    if (usedSpots.length == 0) {
-      const token = new Token(this.p1 ? 'p1' : 'p2', i, j) //kind of redundant, but no need to wait for internet connection now
-      this.tokens.push(token)
-      this.ref.child('/tokens').push(token)
-      this.display.displayToken(token)
-    }
-    else {
-      //There is a token on that spot already
+    const isMe = this.p1 ? 'p1' : 'p2'
+    const that = this
+    if (isMe == this.whosTurn) {
+      const usedSpots = this.tokens.filter(function (token) { return (token.Row == i && token.Col == j); });
+      if (usedSpots.length == 0) {
+        const token = new Token(this.p1 ? 'p1' : 'p2', i, j) //kind of redundant, but no need to wait for internet connection now
+        this.tokens.push(token)
+
+        //Store in firebase
+        this.ref.child('/tokens').push(token)
+        this.ref.update({ turn: (that.p1 ? 'p2' : 'p1') })
+
+        this.display.displayToken(token)
+      }
+      else {
+        //There is a token on that spot already
+      }
     }
   }
 }
