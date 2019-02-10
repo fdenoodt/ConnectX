@@ -4,6 +4,7 @@ class Game {
     this.tokens = []
     this.display = new Display()
     this.p1;
+    this.whosTurn;
 
     if (key != null) { //joining game
       this.ref = firebase.database().ref('games/' + key)
@@ -15,19 +16,26 @@ class Game {
     else {
       this.ref = ref.push();
       this.ref.set({
-        player1: "p1",
+        player1: 'p1',
         player2: null,
         tokens: null,
+        turn: 'p1'
       })
       this.p1 = true
     }
+    this.listenForTurn()
     this.listenForTokenChanges()
+  }
+
+  listenForTurn() {
+    this.ref.child('/turn').on('value', function (data) {
+      this.whosTurn = data.val();
+    })
   }
 
   listenForTokenChanges() {
     const that = this
     this.ref.child('/tokens').on('child_added', function (data) {
-
       const owner = data.val().owner
       const r = data.val().row
       const c = data.val().col
@@ -37,7 +45,6 @@ class Game {
         that.tokens.push(token)
         that.display.displayToken(token)
       }
-
     });
   }
 
