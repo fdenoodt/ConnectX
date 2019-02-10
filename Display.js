@@ -16,7 +16,6 @@ class Display {
   }
 
   displayToken(token) {
-    console.log(token.owner)
     const field = document.getElementsByClassName(`${token.row};${token.col}`)[0]
     field.setAttribute('class', `token ${token.owner == 'p1'?'white':'purple'}`)
   }

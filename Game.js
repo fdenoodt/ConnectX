@@ -42,8 +42,7 @@ class Game {
       const c = data.val().col
 
       if ((owner == 'p1' && !that.p1) || (owner == 'p2' && that.p1)) {
-        const token = new Token(owner, r, c)
-        that.tokens.push(token)
+        const token = that.saveTokenLocally(owner, r, c)
         that.display.displayToken(token)
       }
     });
@@ -55,8 +54,7 @@ class Game {
     if (isMe == this.whosTurn) {
       const usedSpots = this.tokens.filter(function (token) { return (token.Row == i && token.Col == j); });
       if (usedSpots.length == 0) {
-        const token = new Token(this.p1 ? 'p1' : 'p2', i, j) //kind of redundant, but no need to wait for internet connection now
-        this.tokens.push(token)
+        const token = that.saveTokenLocally(this.p1 ? 'p1' : 'p2', i, j)
 
         //Store in firebase
         this.ref.child('/tokens').push(token)
@@ -68,5 +66,54 @@ class Game {
         //There is a token on that spot already
       }
     }
+  }
+
+  saveTokenLocally(owner, row, col) {
+    const token = new Token(owner, row, col) //kind of redundant, but no need to wait for internet connection now
+    this.tokens.push(token)
+    this.checkForWinner(token)
+    return token
+  }
+
+  checkForWinner(token) {
+    const required = 4 - 1 //-1 becuse center token isn't counted in total
+    const totalRight = this.findTokens(1, 0, token.Row, token.Col, token.Owner, 0)
+    const totalLeft = this.findTokens(-1, 0, token.Row, token.Col, token.Owner, 0)
+
+    const totalUp = this.findTokens(0, -1, token.Row, token.Col, token.Owner, 0)
+    const totalDown = this.findTokens(0, 1, token.Row, token.Col, token.Owner, 0)
+
+    const totalLeftDown = this.findTokens(-1, 1, token.Row, token.Col, token.Owner, 0)
+    const totalRightUp = this.findTokens(1, -1, token.Row, token.Col, token.Owner, 0)
+
+    const totalLeftUp = this.findTokens(-1, -1, token.Row, token.Col, token.Owner, 0)
+    const totalRightDown = this.findTokens(1, 1, token.Row, token.Col, token.Owner, 0)
+
+    if (totalLeft + totalRight >= required) //3 = 4 tokens because 
+      console.log('win')
+    else if (totalUp + totalDown >= required)
+      console.log('win')
+    else if (totalLeftDown + totalRightUp >= required)
+      console.log('win')
+    else if (totalLeftUp + totalRightDown >= required)
+      console.log('win')
+  }
+
+  //horizontal:   -1 = left
+  //               0 = none
+  //               1 = right
+  //vertical:     -1 = up
+  //               0 = none
+  //               1 = down
+  findTokens(horizontal, vertical, row, col, owner, countFound) {
+    const nextCol = col + horizontal
+    const nextRow = row + vertical
+
+    //todo from one owner only
+    const usedSpot = this.tokens.filter(function (token) { return (token.Row == nextRow && token.Col == nextCol && token.Owner == owner); })[0];
+    if (usedSpot == undefined) //no token found
+      return countFound
+    else
+      return this.findTokens(horizontal, vertical, nextRow, nextCol, ++countFound)
   }
 }
