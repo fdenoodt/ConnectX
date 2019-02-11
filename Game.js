@@ -49,7 +49,7 @@ class Game {
   }
 
   placeToken(i, j) {
-    const isMe = this.p1 ? 'p1' : 'p2'
+    const isMe = this.isMe()
     const that = this
     if (isMe == this.whosTurn) {
       const usedSpots = this.tokens.filter(function (token) { return (token.Row == i && token.Col == j); });
@@ -75,6 +75,10 @@ class Game {
     return token
   }
 
+  isMe() {
+    return this.p1 ? 'p1' : 'p2'
+  }
+
   checkForWinner(token) {
     const required = 4 - 1 //-1 becuse center token isn't counted in total
     const totalRight = this.findTokens(1, 0, token.Row, token.Col, token.Owner, 0)
@@ -89,14 +93,17 @@ class Game {
     const totalLeftUp = this.findTokens(-1, -1, token.Row, token.Col, token.Owner, 0)
     const totalRightDown = this.findTokens(1, 1, token.Row, token.Col, token.Owner, 0)
 
-    if (totalLeft + totalRight >= required) //3 = 4 tokens because 
-      console.log('win')
-    else if (totalUp + totalDown >= required)
-      console.log('win')
-    else if (totalLeftDown + totalRightUp >= required)
-      console.log('win')
-    else if (totalLeftUp + totalRightDown >= required)
-      console.log('win')
+    if ((totalLeft + totalRight >= required)
+      || (totalUp + totalDown >= required)
+      || (totalLeftDown + totalRightUp >= required)
+      || (totalLeftUp + totalRightDown >= required)) {
+      const isMe = this.isMe()
+      if (isMe == token.owner) {
+        console.log('winner')
+      }
+      else
+        console.log('loser')
+    }
   }
 
   //horizontal:   -1 = left
@@ -114,6 +121,6 @@ class Game {
     if (usedSpot == undefined) //no token found
       return countFound
     else
-      return this.findTokens(horizontal, vertical, nextRow, nextCol, ++countFound)
+      return this.findTokens(horizontal, vertical, nextRow, nextCol, owner, ++countFound)
   }
 }
