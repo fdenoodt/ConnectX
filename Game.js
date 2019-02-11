@@ -54,7 +54,8 @@ class Game {
     if (isMe == this.whosTurn) {
       const usedSpots = this.tokens.filter(function (token) { return (token.Row == i && token.Col == j); });
       if (usedSpots.length == 0) {
-        const token = that.saveTokenLocally(this.p1 ? 'p1' : 'p2', i, j)
+
+        const token = that.saveTokenLocally(this.p1 ? 'p1' : 'p2', this.findLowestOpenToken(j), j)
 
         //Store in firebase
         this.ref.child('/tokens').push(token)
@@ -116,11 +117,17 @@ class Game {
     const nextCol = col + horizontal
     const nextRow = row + vertical
 
-    //todo from one owner only
     const usedSpot = this.tokens.filter(function (token) { return (token.Row == nextRow && token.Col == nextCol && token.Owner == owner); })[0];
     if (usedSpot == undefined) //no token found
       return countFound
     else
       return this.findTokens(horizontal, vertical, nextRow, nextCol, owner, ++countFound)
+  }
+
+  findLowestOpenToken(col) {
+    const emptyTokenRow = null
+    for (let i = this.display.fields - 1; i >= 0; i--)
+      if (this.tokens.filter(function (token) { return (token.Row == i && token.Col == col); })[0] == undefined)
+        return i
   }
 }

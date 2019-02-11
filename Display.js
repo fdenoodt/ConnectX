@@ -1,13 +1,14 @@
 class Display {
   constructor() {
     this._table = document.querySelector(".playField")
+    this.fields = 10
     this.update()
   }
 
   update() {
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < this.fields; i++) {
       const row = this._table.insertRow(this._table.rows.length)
-      for (let j = 0; j < 10; j++) {
+      for (let j = 0; j < this.fields; j++) {
         const col = row.insertCell(j)
         col.setAttribute('class', `${i};${j}`)
         col.setAttribute('onclick', `game.placeToken(${i}, ${j});`)

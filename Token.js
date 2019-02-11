@@ -12,7 +12,7 @@ class Token {
   get Row() {
     return this.row
   }
-  
+
   get Col() {
     return this.col
   }
