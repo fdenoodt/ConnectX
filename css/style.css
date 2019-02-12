@@ -27,9 +27,13 @@ td {
   height: 40px;
 }
 
-.title {
+h1 {
   color: white;
   font-weight: bold;
   margin: 0.5em;
   font-size: 2em;
+}
+
+p {
+  color: lightgray
 }

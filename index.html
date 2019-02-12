@@ -27,8 +27,7 @@
 
 
 <body onload="init()">
-  <!-- <body onload="findGame()"> -->
-  <nav>
+  <nav class="purple lighten-1">
     <div class="nav-wrapper">
       <a onclick="router.goTo('home')" class="brand-logo logo">ConnectX</a>
       <a data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
@@ -45,9 +44,14 @@
   </ul>
 
   <div class="container">
-    <div class="home">
-      <p>Home page</p>
+    <div class="home section center-align">
+      <h1>
+        Welcome to<br>
+        <span class="purple-text text-lighten-1">Connect</span>X
+      </h1>
+      <button class="purple lighten-1 waves-effect waves-light btn" onclick="router.goTo('game')">Join game</button>
     </div>
+
     <div class="game">
       <table class="playField">
       </table>
