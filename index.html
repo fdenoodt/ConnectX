@@ -16,7 +16,7 @@
   <script type="text/javascript" src="scripts/materialize/materialize.js"></script>
   <script type="text/javascript" src="scripts/materialize/script.js"></script>
 
-
+  <script src="scripts/Router.js"></script>
   <script src="scripts/gameComponents/Display.js"></script>
   <script src="scripts/gameComponents/Token.js"></script>
   <script src="scripts/gameComponents/Game.js"></script>
@@ -25,24 +25,34 @@
 
 </head>
 
-<body onload="findGame()">
+
+<body onload="init()">
+  <!-- <body onload="findGame()"> -->
   <nav>
     <div class="nav-wrapper">
-      <a onclick="goTo('home')" class="brand-logo logo">ConnectX</a>
+      <a onclick="router.goTo('home')" class="brand-logo logo">ConnectX</a>
       <a data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
-        <li><a onclick="goTo('home')">Home</a></li>
-        <li><a onclick="goTo('game')">Join game</a></li>
+        <li><a onclick="router.goTo('home')">Home</a></li>
+        <li><a onclick="router.goTo('game')">Join game</a></li>
       </ul>
     </div>
   </nav>
 
   <ul class="sidenav" id="mobile-demo">
-    <li><a onclick="goTo('home')">Home</a></li>
-    <li><a onclick="goTo('game')">Join game</a></li>
+    <li><a onclick="router.goTo('home')">Home</a></li>
+    <li><a onclick="router.goTo('game')">Join game</a></li>
   </ul>
-  <table class="playField">
-  </table>
+
+  <div class="container">
+    <div class="home">
+      <p>Home page</p>
+    </div>
+    <div class="game">
+      <table class="playField">
+      </table>
+    </div>
+  </div>
 </body>
 
 </html>

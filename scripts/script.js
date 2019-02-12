@@ -9,6 +9,7 @@ const config = {
 firebase.initializeApp(config);
 
 let game;
+let router;
 const database = firebase.database();
 const ref = firebase.database().ref('games/')
 
@@ -28,4 +29,14 @@ const findGame = () => {
     if (game == null)
       createGame()
   });
+}
+
+
+const init = () => {
+  const pages = ['home', 'game']
+  for (const page of pages) {
+    document.querySelector('.' + page).style.display = 'none'
+  }
+
+  router = new Router(pages)
 }
