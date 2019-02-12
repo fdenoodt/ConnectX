@@ -6,16 +6,41 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>ConnectX</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+  <!-- Materializecss -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+  <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
+
   <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
-  <script src="Display.js"></script>
-  <script src="Token.js"></script>
-  <script src="Game.js"></script>
-  <script src="script.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script type="text/javascript" src="scripts/materialize/materialize.js"></script>
+  <script type="text/javascript" src="scripts/materialize/script.js"></script>
+
+
+  <script src="scripts/gameComponents/Display.js"></script>
+  <script src="scripts/gameComponents/Token.js"></script>
+  <script src="scripts/gameComponents/Game.js"></script>
+  <script src="scripts/script.js"></script>
+
 
 </head>
 
 <body onload="findGame()">
+  <nav>
+    <div class="nav-wrapper">
+      <a onclick="goTo('home')" class="brand-logo logo">ConnectX</a>
+      <a data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a onclick="goTo('home')">Home</a></li>
+        <li><a onclick="goTo('game')">Join game</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <ul class="sidenav" id="mobile-demo">
+    <li><a onclick="goTo('home')">Home</a></li>
+    <li><a onclick="goTo('game')">Join game</a></li>
+  </ul>
   <table class="playField">
   </table>
 </body>
