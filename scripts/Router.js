@@ -2,6 +2,7 @@ class Router {
   constructor(lsPages) {
     this.lsPages = lsPages
     this.goTo('home')
+    // this.event = new Event('build')
   }
 
   // Routing
@@ -20,7 +21,6 @@ class Router {
     return vars;
   }
 
-
   updatePage = () => {
     this.lsPages.forEach(element => {
       document.querySelector('.' + element).style.display = 'none';
@@ -32,7 +32,9 @@ class Router {
     
     document.querySelector('.' + pageToDisplay).style.display = 'block';
 
+
+    if(pageToDisplay == 'game')
+      findGame()
     //TODO: page events
   }
-
 }
